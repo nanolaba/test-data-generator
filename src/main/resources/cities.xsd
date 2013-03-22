@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="rocid" type="rocidType"/>
+    <xs:complexType name="rocidType">
+        <xs:sequence>
+            <xs:element type="cityType" name="city" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>таблица city</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="countryType" name="country" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>таблица country</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="regionType" name="region" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>таблица region</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cityType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="city_id"/>
+            <xs:element type="xs:string" name="country_id"/>
+            <xs:element type="xs:string" name="region_id"/>
+            <xs:element type="xs:string" name="name"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="countryType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="country_id"/>
+            <xs:element type="xs:string" name="city_id"/>
+            <xs:element type="xs:string" name="name"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="regionType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="region_id"/>
+            <xs:element type="xs:string" name="country_id"/>
+            <xs:element type="xs:string" name="city_id"/>
+            <xs:element type="xs:string" name="name"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
