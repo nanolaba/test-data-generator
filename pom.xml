@@ -4,12 +4,23 @@
     <groupId>com.nanolaba</groupId>
     <artifactId>test-data-generator</artifactId>
     <name>test-data-generator</name>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
+
+
+        <!-- Maven plugins -->
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <native2ascii-maven-plugin.version>1.0-beta-1</native2ascii-maven-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
+        <yuicompressor-maven-plugin.version>1.5.1</yuicompressor-maven-plugin.version>
+        <github.plugin>0.12</github.plugin>
+
     </properties>
     <distributionManagement>
         <repository>
@@ -45,6 +56,16 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>2.2.1</version>
                 <executions>
@@ -60,7 +81,7 @@
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.7</version>
+                <version>${github.plugin}</version>
                 <configuration>
                     <message>Maven artifacts for ${project.groupId} ${project.artifactId} ${project.version}</message>
                     <noJekyll>true</noJekyll>
@@ -84,7 +105,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven-clean-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>auto-clean</id>

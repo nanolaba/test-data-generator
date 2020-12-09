@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
@@ -79,23 +80,39 @@ public class RussianNameGenerator implements NameGenerator {
         return femaleO[RANDOM.nextInt(femaleO.length)];
     }
 
+    public String[] getMaleF() {
+        return maleF;
+    }
+
+    public String[] getMaleI() {
+        return maleI;
+    }
+
+    public String[] getMaleO() {
+        return maleO;
+    }
+
+    public String[] getFemaleF() {
+        return femaleF;
+    }
+
+    public String[] getFemaleI() {
+        return femaleI;
+    }
+
+    public String[] getFemaleO() {
+        return femaleO;
+    }
+
     private static String[] readArray(String fileName) {
-        try {
-            InputStream is = RussianNameGenerator.class.getResourceAsStream(fileName);
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                try {
-                    List<String> res = new LinkedList<String>();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        res.add(line.trim());
-                    }
-                    return res.toArray(new String[res.size()]);
-                } finally {
-                    reader.close();
+        try (InputStream is = RussianNameGenerator.class.getResourceAsStream(fileName)) {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+                List<String> res = new LinkedList<String>();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    res.add(line.trim());
                 }
-            } finally {
-                if (is != null) is.close();
+                return res.toArray(new String[0]);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
